@@ -15,12 +15,14 @@ jobs:
 
       - name: nr1
         run: |
-          npm i -g nr1
+          curl -s https://cli.nr-ext.net/installer.sh | sudo bash
           nr1 nerdpack:info
           echo $?
 
       - name: check
+        if: failure() 
         run: |
+          nr1 nerdpack:info
 
       - name: Run a multi-line script
         if: failure()
