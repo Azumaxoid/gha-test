@@ -14,6 +14,7 @@ jobs:
           node-version: 12.x
 
       - name: nr1
+        continue-on-error: true
         env:
           NR_USER_KEY: ${{ secrets.NR_USER_KEY }}
         run: |
@@ -23,8 +24,8 @@ jobs:
           echo $?
 
       - name: check
-        if: failure() 
         run: |
+          echo "hoge"${{ github.nr1.output }}
           nr1 nerdpack:info
 
       - name: Run a multi-line script
