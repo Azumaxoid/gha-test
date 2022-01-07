@@ -14,11 +14,13 @@ jobs:
           node-version: 12.x
 
       - name: nr1
-        run: npm i -g nr1
+        run: |
+          npm i -g nr1
+          nr1 nerdpack:info
+          echo $?
 
       - name: check
         run: |
-          nr1 nerdpack:info
 
       - name: Run a multi-line script
         if: failure()
