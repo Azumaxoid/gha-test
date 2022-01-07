@@ -14,8 +14,11 @@ jobs:
           node-version: 12.x
 
       - name: nr1
+        env:
+          NR_USER_KEY: ${{ secrets.NR_USER_KEY }}
         run: |
           curl -s https://cli.nr-ext.net/installer.sh | sudo bash
+          nr1 profiles:add --name tmp --api-key $NR_USER_KEY --region us
           nr1 nerdpack:info
           echo $?
 
