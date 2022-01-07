@@ -17,6 +17,7 @@ jobs:
         continue-on-error: true
         env:
           NR_USER_KEY: ${{ secrets.NR_USER_KEY }}
+        id: nr1
         run: |
           curl -s https://cli.nr-ext.net/installer.sh | sudo bash
           nr1 profiles:add --name tmp --api-key $NR_USER_KEY --region us
@@ -25,7 +26,7 @@ jobs:
 
       - name: check
         run: |
-          echo "hoge"${{ github.nr1.output }}
+          echo "hoge"${{ steps.nr1.output }}
           nr1 nerdpack:info
 
       - name: Run a multi-line script
