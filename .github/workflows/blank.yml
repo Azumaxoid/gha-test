@@ -9,14 +9,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
 
-      - name: Run a one-line script
-        run: exit 1
+      - name: nr1
+        run: npm i -g nr1
 
-      - name: Run a multi-line script
-        if: failure()
+      - name: check
         run: |
-          echo 1
+          nr1 nerdpack:info
 
       - name: Run a multi-line script
         if: failure()
